@@ -40,7 +40,7 @@ def predict_anomaly(image_tensor):
         return 'Pneumonia'
     else:
         print("[LOG] Detected: Normal")
-        return 'Normal'
+        return 'allahou a3lem'
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
