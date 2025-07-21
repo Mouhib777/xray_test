@@ -3,8 +3,7 @@ from PIL import Image
 import torch
 import torchvision.transforms as transforms
 
-# Placeholder anomaly names
-ANOMALY_CLASSES = ['Normal', 'Pneumonia', 'Tuberculosis', 'Other']
+ANOMALY_CLASSES = ['Normal', 'Pneumonia']
 
 def load_image(image_path):
     image = Image.open(image_path).convert('RGB')
@@ -15,9 +14,14 @@ def load_image(image_path):
     return transform(image).unsqueeze(0)
 
 def predict_anomaly(image_tensor):
-    # Placeholder: randomly select an anomaly
-    idx = torch.randint(0, len(ANOMALY_CLASSES), (1,)).item()
-    return ANOMALY_CLASSES[idx]
+    # Placeholder: simple logic based on image mean pixel value
+    # In real use, replace with a trained model
+    mean_val = image_tensor.mean().item()
+    # Arbitrary threshold for demonstration
+    if mean_val < 0.5:
+        return 'Pneumonia'
+    else:
+        return 'Normal'
 
 def main():
     images_dir = 'images'
