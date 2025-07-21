@@ -34,9 +34,12 @@ def load_image(image_path):
 
 def predict_anomaly(image_tensor):
     mean_val = image_tensor.mean().item()
+    print(f"[LOG] Image mean pixel value: {mean_val}")
     if mean_val < 0.5:
+        print("[LOG] Detected: Pneumonia")
         return 'Pneumonia'
     else:
+        print("[LOG] Detected: Normal")
         return 'Normal'
 
 @app.route('/', methods=['GET', 'POST'])
